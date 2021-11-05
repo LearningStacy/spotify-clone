@@ -1,4 +1,5 @@
 import React from 'react';
+import { loginUrl } from '../../spotifyApi';
 import './login.scss';
 
 export default function Login() {
@@ -7,9 +8,9 @@ export default function Login() {
             <div className="logo">
                 <img src="/title_icon.png" alt="logo"/>
             </div>
-            {/* <h1>Welcome to musikHand</h1> */}
+            <h2 className="logo-text">Welcome to musikHand</h2>
             
-            <a>Log In with Spotify</a>
+            <a href={loginUrl}>Log In with Spotify</a>
         </div>
     )
 }
