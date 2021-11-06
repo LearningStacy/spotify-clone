@@ -11,4 +11,4 @@ export const DataLayer = ({initialState, reducer, children}) => (
 );
 
 //State provider - getting value or dispatch action from data layer
-export const DataLayerValue= () => useContext(DataLayerContext);
+export const useDataLayerValue= () => useContext(DataLayerContext);
