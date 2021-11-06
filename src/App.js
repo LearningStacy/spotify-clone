@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Login from './components/login/Login';
 import { getAccessToken } from './spotifyApi';
-import Player from './components/player/Home';
+import Player from './components/player/Player';
 
 import {useDataLayerValue} from './dataLayer';
 
