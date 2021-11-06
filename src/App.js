@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Login from './components/login/Login';
 import { getAccessToken } from './spotifyApi';
-import Player from './components/player/Player';
+import Player from './components/player/Home';
 
 import {useDataLayerValue} from './dataLayer';
 
@@ -45,14 +45,15 @@ function App() {
 
   return (
     <div className="app">
-      {
+      {/* {
         token ? (
           <Player/>
         ) : (
           
           <Login/>
         )
-      }
+      } */}
+      <Player/>
     </div>
   );
 }
