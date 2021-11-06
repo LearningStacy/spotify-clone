@@ -2,6 +2,9 @@
 import { useEffect, useState } from 'react';
 import Login from './components/login/Login';
 import { getAccessToken } from './spotifyApi';
+import Player from './components/player/Player';
+
+import {useDataLayerValue} from './dataLayer';
 
 import SpotifyWebApi from 'spotify-web-api-js';
 //'super object' aka instance so other places have access to info
@@ -10,6 +13,8 @@ const spotify = new SpotifyWebApi();
 function App() {
 
   const [token, setToken] = useState(null);
+
+  const [{user}, dispatch] = useDataLayerValue();
   
   //if any changes happens in url - grab such change (hash)
   useEffect(() => {
@@ -27,21 +32,24 @@ function App() {
     if(_token) {
       setToken(_token);
       //set accessToken for api to use (connect spotify to myApp)
-      spotify.setAccessToken(_token);
-      
-      //testing api connection - getting user account
-      spotify.getMe().then(user=>{
-        console.log('user is', user);
+      spotify.setAccessToken(_token); 
+
+      spotify.getMe().then((user) => {
+        console.log('human user:' , user);
+        
+        dispatch({
+          type: 'SET_USER',
+          user: user});
       });
     }
-    
+    console.log('Token, you:', token);
   }, []);
 
   return (
     <div className="app">
       {
         token ? (
-          <h1>Logged in </h1>
+          <Player/>
         ) : (
           
           <Login/>
