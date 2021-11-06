@@ -11,10 +11,8 @@ import SpotifyWebApi from 'spotify-web-api-js';
 const spotify = new SpotifyWebApi();
 
 function App() {
-
-  const [token, setToken] = useState(null);
-
-  const [{user}, dispatch] = useDataLayerValue();
+  //get token from dataLayer instead state
+  const [{user, token}, dispatch] = useDataLayerValue();
   
   //if any changes happens in url - grab such change (hash)
   useEffect(() => {
@@ -30,19 +28,19 @@ function App() {
     
     // checking if token exists
     if(_token) {
-      setToken(_token);
+      dispatch({
+        type: "SET_TOKEN",
+        token: _token,
+      });
       //set accessToken for api to use (connect spotify to myApp)
       spotify.setAccessToken(_token); 
 
-      spotify.getMe().then((user) => {
-        console.log('human user:' , user);
-        
+      spotify.getMe().then((user) => {       
         dispatch({
           type: 'SET_USER',
           user: user});
       });
     }
-    console.log('Token, you:', token);
   }, []);
 
   return (
