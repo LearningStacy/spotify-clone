@@ -12,7 +12,7 @@ export default function Player({spotify}) {
                 <LeftBar/>
 
                 {/* RightSide aka main */}
-                <RightBar/>
+                <RightBar spotify={spotify}/>
                 
                 
                 
