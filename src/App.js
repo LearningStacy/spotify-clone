@@ -53,15 +53,15 @@ function App() {
 
   return (
     <div className="app">
-      {
+      {/* {
         token ? (
           <Player/>
         ) : (
           
           <Login/>
         )
-      }
-      {/* <Player/> */}
+      } */}
+      <Player/>
     </div>
   );
 }
