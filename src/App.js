@@ -40,20 +40,28 @@ function App() {
           type: 'SET_USER',
           user: user});
       });
+
+      //pull user's playlist 
+      spotify.getUserPlaylists().then((playlists) => {
+        dispatch({
+          type: "SET_PLAYLISTS",
+          playlists: playlists,
+        });
+      }); 
     }
   }, []);
 
   return (
     <div className="app">
-      {/* {
+      {
         token ? (
           <Player/>
         ) : (
           
           <Login/>
         )
-      } */}
-      <Player/>
+      }
+      {/* <Player/> */}
     </div>
   );
 }

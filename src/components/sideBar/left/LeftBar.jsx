@@ -4,8 +4,12 @@ import './leftBar.scss';
 import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
 import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
+import { useDataLayerValue } from '../../../dataLayer';
 
 export default function LeftBar() {
+    //pulling user's playlist from dataLayer
+    const [{playlists}, dispatch] = useDataLayerValue();
+    
     return (
         <div className="sidebar">
             <div className="img__container">
@@ -22,8 +26,11 @@ export default function LeftBar() {
             <strong className="sidebar__title">PLAYLISTS</strong>
             <hr/>
 
-            <SideOptions title={'Pop'}/>
+            {/* check if the playlist is empty -  */}
+            {playlists?.items?.map(playlist => (
+                <SideOptions title = {playlist.name} />
+            ))}
             
         </div>
-    )
+    );
 }
