@@ -5,6 +5,7 @@ export const initialState = {
     playing: false,
     item: null, 
     token: null,
+    top_artists: null,
 }
 
 //state - what it is currently, action - sets items aka manipulate how the data looks / value, return = new state 
@@ -30,6 +31,11 @@ const reducer = (state, action) => {
         case 'SET_DISCOVER_WEEKLY':
             return{
                 ...state, discover_weekly: action.discover_weekly,
+            }
+
+        case 'SET_TOP_ARTISTS':
+            return {
+                ...state, top_artists: action.top_artists,
             }
     
     default:

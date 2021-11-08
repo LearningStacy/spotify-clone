@@ -55,23 +55,33 @@ function App() {
         dispatch({
           type: 'SET_DISCOVER_WEEKLY',
           discover_weekly: response,
-        })
-      })
+        });
+      });
+
+      spotify.getMyTopArtists()
+      .then((response) => {
+        dispatch({
+          type: "SET_TOP_ARTISTS",
+          top_artists: response,
+        });
+      });
+
+      
     }
   }, []);
 
 
   return (
     <div className="app">
-      {/* {
+      {
         token ? (
           <Player/>
         ) : (
           
           <Login/>
         )
-      } */}
-      <Player/>
+      }
+      {/* <Player/> */}
     </div>
   );
 }
