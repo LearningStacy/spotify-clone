@@ -14,7 +14,7 @@ export default function RightBar({spotify}) {
     const [{discover_weekly}, dispatch] = useDataLayerValue();
     
     const playPlaylist = (id) => {
-        spotify.play({context_uri: `spotify:playlist:`})
+        spotify.play({context_uri: `spotify:playlist:6ehdSiG3d2TinBXr1r7ZK0`})
         .then((response)=> {
             spotify.getMyCurrentPlayingTrack()
             .then((response) => {
