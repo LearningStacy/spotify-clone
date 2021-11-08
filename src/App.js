@@ -12,7 +12,7 @@ const spotify = new SpotifyWebApi();
 
 function App() {
   //get token from dataLayer instead state
-  const [{user, token}, dispatch] = useDataLayerValue();
+  const [{token}, dispatch] = useDataLayerValue();
   
   //if any changes happens in url - grab such change (hash)
   useEffect(() => {
@@ -68,14 +68,15 @@ function App() {
 
       
     }
-  }, []);
+  }, [token, dispatch]);
 
 
   return (
     <div className="app">
       {
         token ? (
-          <Player/>
+          <Player spotify={spotify}/>
+          // <Player />
         ) : (
           
           <Login/>
