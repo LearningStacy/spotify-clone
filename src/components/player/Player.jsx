@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './player.scss';
 import LeftBar from '../sideBar/left/LeftBar';
 import RightBar from '../sideBar/right/RightBar';
 import PlayerBar from '../playerBar/PlayerBar';
 
 export default function Player({spotify}) {
-    return (
+
+   return (
         <div className="player">
             <div className="player__body">
                 {/* SideBar */}
@@ -18,7 +19,7 @@ export default function Player({spotify}) {
                 
             </div>
                 {/* PlayBar aka where the play controls placed*/}
-                <PlayerBar/>
+                <PlayerBar spotify={spotify}/>
         </div>
     )
 }
