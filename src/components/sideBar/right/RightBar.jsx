@@ -12,6 +12,42 @@ import SongRow from './songRow/SongRow';
 
 export default function RightBar({spotify}) {
     const [{discover_weekly}, dispatch] = useDataLayerValue();
+    
+    const playPlaylist = (id) => {
+        spotify.play({context_uri: `spotify:playlist:`})
+        .then((response)=> {
+            spotify.getMyCurrentPlayingTrack()
+            .then((response) => {
+                dispatch({
+                    type: "SET_ITEM",
+                    item: response.item,
+                });
+                dispatch({
+                    type: "SET_PLAYING",
+                    playing: true, 
+                });
+            });
+        });    
+    };
+    
+    const playSong = (id) => {
+        spotify.play({
+            uris: [`spotify:track:${id}`],
+        })
+        .then((res) => {
+            spotify.getMyCurrentPlayingTrack().then((response)=> {
+                dispatch({
+                    type: "SET_ITEM",
+                    item: response.item,
+                });
+                dispatch({
+                    type: "SET_PLAYING",
+                    playing: true,
+                });
+            });
+        });
+    };
+
     return (
         <div className="body">
             <Header spotify={spotify}/>
@@ -29,14 +65,16 @@ export default function RightBar({spotify}) {
 
             <div className="body__songs">
                 <div className="body__icons">
-                    <PlayCircleFilledIcon className="body__shuffle"/>
+                    <PlayCircleFilledIcon className="body__shuffle" onClick={playPlaylist}/>
                     <FavoriteIcon fontSize="large"/>
                     <MoreHorizIcon/>
                     
                 </div>
-                {/* List of songs */}
+                {/* List o
+                f songs */}
                 {discover_weekly?.tracks.items.map(item => (
-                    <SongRow track={item.track} />
+                    // <SongRow track={item.track} />
+                    <SongRow playSong = {playSong} track={item.track} />
                 ))}
             </div>
             
